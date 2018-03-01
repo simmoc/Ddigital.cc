@@ -1,0 +1,3 @@
+<IfModule mod_rewrite.c>
+    DirectoryIndex index.html
+</IfModule>

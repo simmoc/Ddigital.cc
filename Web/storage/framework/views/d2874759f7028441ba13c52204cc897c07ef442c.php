@@ -1,0 +1,49 @@
+
+<td>
+	<input type="text" name="digi_download_files[<?php echo $key; ?>][name]" class="digi_repeatable_name_field large-text" value="<?php echo e($name); ?>" placeholder="File Name"/>
+</td>
+<td>
+	<select name="digi_download_files[<?php echo $key; ?>][type]" title="<?php echo e(getPhrase('Please select type')); ?>" class="upload_type" data-index="<?php echo e($index); ?>">
+		<option value="file" <?php if( $type == 'file') echo 'selected';?>><?php echo e(getPhrase('File')); ?></option>
+		<option value="url" <?php if( $type == 'url') echo 'selected';?>><?php echo e(getPhrase('URL', 'upper')); ?></option>
+	</select>
+</td>
+
+<td>
+	<div class="digi_repeatable_upload_field_container">
+		<?php
+		$field_type = $type;
+		if( $field_type == 'url' )
+			$field_type = 'text';
+		?>
+		<input type="<?php echo e($field_type); ?>" name="digi_download_files[<?php echo $key; ?>][file]" class="digi_repeatable_upload_field digi_upload_field large-text digi_upload_file_button digi_upload_file_button_index_<?php echo e($index); ?>" value="<?php echo e($file_name); ?>" placeholder="URL Eg: http://site.com"/>
+		<?php
+		if( $type == 'file' && $file_name != '' ) {
+			echo '<a href="'.UPLOAD_URL_PRODUCTS_DOWNLOADS.$file_name.'" target="_blank">View</a>';
+		}
+		?>
+	</div>
+</td>
+
+<td class="pricing">
+	<select name="digi_download_files[<?php echo $key;?>][condition]" class="digi_repeatable_condition_field">
+	<option value="">Please select</option>
+	<?php
+		$options = array();
+		if ( $prices ) {
+			foreach ( $prices as $price_key  ) {
+				if( $price_key == $option ) {
+					echo '<option value="'.$price_key.'" selected>' . $price_key . '</option>';
+				} else {
+					echo '<option value="'.$price_key.'">' . $price_key . '</option>';
+				}
+			}
+		}
+	?>
+	</select>
+</td>
+
+<td>
+	<span class="digi_file_id"><?php echo $key; ?></span>
+</td>
+
